@@ -36,3 +36,5 @@ function countingValleys(steps, path) {
   }
   return valleysTraversed;
 }
+
+module.exports = valleysTraversed;
