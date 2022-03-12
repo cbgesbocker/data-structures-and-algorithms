@@ -89,3 +89,5 @@ let arr3 = [
 console.log("Should be 19", hourglassSum(arr));
 console.log("Should be 28", hourglassSum(arr2));
 console.log("Should be 0", hourglassSum(arr3));
+
+module.exports = hourglassSum;

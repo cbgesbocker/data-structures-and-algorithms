@@ -1,0 +1,23 @@
+{
+  "name": "code-practice",
+  "version": "1.0.0",
+  "description": "",
+  "main": "hour-glass-sum.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cbgesbocker/coding-practice.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cbgesbocker/coding-practice/issues"
+  },
+  "homepage": "https://github.com/cbgesbocker/coding-practice#readme",
+  "devDependencies": {
+    "@types/jest": "^27.4.1",
+    "jest": "^27.5.1"
+  }
+}

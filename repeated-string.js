@@ -109,8 +109,8 @@ function repeatedString(s, n) {
   //     }
   return foundA;
 }
-// console.log(repeatedString("x", 970770));
-// console.log("Should be 588525: ", repeatedString("aab", 882787));
+console.log(repeatedString("x", 970770));
+console.log("Should be 588525: ", repeatedString("aab", 882787));
 console.log(
   "Should be 51574523448: ",
   repeatedString(
@@ -119,3 +119,5 @@ console.log(
   )
 );
 console.log("Should be 2: ", repeatedString("ababa", 3));
+
+module.exports = repeatedString;
