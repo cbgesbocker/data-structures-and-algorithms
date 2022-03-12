@@ -1,8 +1,6 @@
-const logger = (index, ...args) => {
-  if (index > 50) {
-    console.log(...args);
-  }
-};
+/**
+ * https://www.hackerrank.com/challenges/jumping-on-the-clouds/problem?isFullScreen=true&h_l=interview&playlist_slugs%5B%5D=interview-preparation-kit&playlist_slugs%5B%5D=warmup&h_r=next-challenge&h_v=zen
+ */
 function jumpingOnClouds(c) {
   if (c.length < 2 || c.length > 100) {
     throw new Error("out of range");
@@ -77,10 +75,3 @@ console.log(
     ]),
   })
 );
-
-// [0, 0, 1, 0, 0, 0, 0, 1, 0, 0]
-// [0, 0, 0, 1, 0, 0]
-// [ 0, 0, 1, 0, 0, 1, 0 ]
-//[ 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0 ]
-
-// [0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0,]
