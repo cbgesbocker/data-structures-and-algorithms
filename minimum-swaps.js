@@ -77,7 +77,7 @@ function minimumSwapsNoMap(arr) {
         let arrayPlacement = currentIndexValue - 1;
 
         // get value at index
-        let valueAtIndex = arr[placement];
+        let valueAtIndex = arr[arrayPlacement];
 
         arr = swap(arr, pointer, arrayPlacement);
         currentIndexValue = valueAtIndex;
