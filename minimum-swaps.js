@@ -57,10 +57,10 @@ function minimumSwapsNoMap(arr) {
       continue;
     }
 
-    // 4
-    let currentIndexValue = arr[i - 1];
-    console.log("currentIndexValue", currentIndexValue);
+    let pointer = i - 1;
     isVisited[i] = true;
+
+    let currentIndexValue = arr[pointer];
 
     if (currentIndexValue === i) {
       // 1 -> in first spot
@@ -73,16 +73,14 @@ function minimumSwapsNoMap(arr) {
         // store
         isVisited[currentIndexValue] = true;
 
+        // current value placement in array
+        let arrayPlacement = currentIndexValue - 1;
+
         // get value at index
-        let valueAtIndex = arr[currentIndexValue - 1];
-        console.log("value at index", valueAtIndex);
+        let valueAtIndex = arr[placement];
 
-        arr = swap(arr, i - 1, currentIndexValue - 1);
-        console.log("swapped", arr);
+        arr = swap(arr, pointer, arrayPlacement);
         currentIndexValue = valueAtIndex;
-
-        console.log("setting current index value", currentIndexValue);
-
         minimumSwaps++;
       }
     }
