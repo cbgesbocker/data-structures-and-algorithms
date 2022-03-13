@@ -1,4 +1,5 @@
 console.log = () => null;
+
 function swap(array, indexOne, indexTwo) {
   let value = array[indexOne];
   let valueTwo = array[indexTwo];
@@ -42,6 +43,39 @@ function minimumSwaps(arr) {
   }
   console.log("sorted", arr);
 
+  return minimumSwaps;
+}
+
+// Complete the minimumSwaps function below.
+function minimumSwapsNoMap(arr) {
+  let minimumSwaps = 0;
+  let isVisited = new Array(arr.length).fill(false, 1, arr.length + 1);
+
+  // [ 1, 4, 3, 2 ]
+  for (let i = 1; i <= arr.length; i++) {
+    if (isVisited[i] === true) {
+      continue;
+    }
+
+    // 4
+    let currentValue = arr[i - 1];
+
+    // [ , true ]
+    isVisited[i] = true;
+
+    if (node === i) {
+      continue;
+    } else {
+      while (!isVisited[currentValue]) {
+        isVisited[currentValue] = true;
+        let nextValue = arr[currentValue];
+        arr = swap(arr, currentValue - 1, nextValue - 1);
+        currentValue = nextValue;
+        minimumSwaps++;
+      }
+    }
+  }
+  console.log("sorted", arr);
   return minimumSwaps;
 }
 
