@@ -18,6 +18,7 @@
   "homepage": "https://github.com/cbgesbocker/coding-practice#readme",
   "devDependencies": {
     "@types/jest": "^27.4.1",
+    "eslint": "^8.11.0",
     "jest": "^27.5.1"
   }
 }
