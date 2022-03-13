@@ -85,7 +85,6 @@ function minimumSwapsNoMap(arr) {
       }
     }
   }
-  console.log("sorted", arr);
   return minimumSwaps;
 }
 
