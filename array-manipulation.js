@@ -36,7 +36,6 @@ function arrayManipulationV4(n, queries) {
     }, 0) / ends.size;
 
   let middle = Math.ceil((startsTotal + endsTotal) / 2);
-  console.log("middle", middle);
   let middleCountMap = new Map();
   let othersCountMap = new Map();
   for (let i = 1; i <= queries.length; i++) {
@@ -65,7 +64,41 @@ function arrayManipulationV4(n, queries) {
   return max;
 }
 
-function arrayManipulationV5(n, queries) {}
+function arrayManipulationV5(n, queries) {
+  // a b k
+  // 1 5 3
+  // 4 8 7
+  // 6 9 1
+  let values = new Array(n + 1).fill(0, 0, n + 1);
+
+  for (let i = 1; i <= queries.length; i++) {
+    let variableArray = queries[i - 1];
+    let a = variableArray[0];
+    let b = variableArray[1];
+    let k = variableArray[2];
+    if (k === 0) {
+      continue;
+    }
+    values[a] = values[a] === 0 ? k : values[a] + k;
+    values[b + 1] -= values[b] ? k : values[b] + k;
+  }
+
+  let max = 0;
+  for (let j = 0; j < values.length; j++) {
+    let value = values[j];
+    let index = j;
+    while (index < values.length) {
+      values[index] += value;
+      if (!max) {
+        max = values[index];
+      }
+      if (max < values[index]) {
+        max = values[index];
+      }
+      index++;
+    }
+  }
+}
 
 function getMaxBrute(n, queries) {
   console.log("getting max brute");
@@ -149,7 +182,7 @@ console.log(
   ])
 );
 
-// console.log(
-//   "Should be 2497169732",
-//   arrayManipulationV4(10000000, require("./large-input-array-manipulation"))
-// );
+console.log(
+  "Should be 2497169732",
+  arrayManipulationV5(10000000, require("./large-input-array-manipulation"))
+);
