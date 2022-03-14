@@ -91,5 +91,8 @@ console.log(
 
 console.log(
   "Should be 2497169732",
-  arrayManipulationV5(10000000, require("./large-input-array-manipulation"))
+  arrayManipulationV5(
+    10000000,
+    require("./input/large-input-array-manipulation")
+  )
 );
