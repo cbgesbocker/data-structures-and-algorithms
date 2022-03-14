@@ -5,64 +5,8 @@
  * The function accepts following parameters:
  *  1. INTEGER n
  *  2. 2D_INTEGER_ARRAY queries
+ * https://www.hackerrank.com/challenges/crush/problem?isFullScreen=true&h_l=interview&playlist_slugs%5B%5D=interview-preparation-kit&playlist_slugs%5B%5D=arrays&h_r=next-challenge&h_v=zen&h_r=next-challenge&h_v=zen
  */
-
-function arrayManipulationV4(n, queries) {
-  // Write your code here
-  let starts = new Map();
-  let ends = new Map();
-  for (let i = 1; i <= queries.length; i++) {
-    let variableArray = queries[i - 1];
-    let k = variableArray[2];
-    if (k === 0) {
-      continue;
-    }
-    let a = variableArray[0];
-    starts.set(i, { index: a, value: k });
-    let b = variableArray[1];
-    ends.set(i, { index: b, value: k });
-  }
-
-  let startsTotal =
-    Array.from(starts).reduce((acc, value) => {
-      acc += value[1].index;
-      return acc;
-    }, 0) / starts.size;
-
-  let endsTotal =
-    Array.from(ends).reduce((acc, value) => {
-      acc += value[1].index;
-      return acc;
-    }, 0) / ends.size;
-
-  let middle = Math.ceil((startsTotal + endsTotal) / 2);
-  let middleCountMap = new Map();
-  let othersCountMap = new Map();
-  for (let i = 1; i <= queries.length; i++) {
-    let variableArray = queries[i - 1];
-    let a = variableArray[0];
-    let b = variableArray[1];
-    let k = variableArray[2];
-    if (k === 0) {
-      continue;
-    }
-    if (middle >= a && middle <= b) {
-      middleCountMap.set(i, { value: k });
-    } else {
-      othersCountMap.set(i, { value: k });
-    }
-  }
-
-  let max = 0;
-  if (middleCountMap.size >= othersCountMap.size) {
-    for (let item of middleCountMap) {
-      max += item[1].value;
-    }
-  } else {
-    max = getMaxBrute(n, queries);
-  }
-  return max;
-}
 
 function arrayManipulationV5(n, queries) {
   // a b k
@@ -71,8 +15,8 @@ function arrayManipulationV5(n, queries) {
   // 6 9 1
   let values = new Array(n + 2).fill(0, 0, n + 2);
 
-  for (let i = 1; i <= queries.length; i++) {
-    let variableArray = queries[i - 1];
+  for (let i = 0; i < queries.length; i++) {
+    let variableArray = queries[i];
     let a = variableArray[0];
     let b = variableArray[1];
     let k = variableArray[2];
@@ -82,7 +26,6 @@ function arrayManipulationV5(n, queries) {
 
   let max = 0;
   let sum = 0;
-  console.log("values", values);
 
   for (let j = 0; j < values.length; j++) {
     sum += values[j];
@@ -90,33 +33,6 @@ function arrayManipulationV5(n, queries) {
   }
   return max;
 }
-
-// function getMaxBrute(n, queries) {
-//   console.log("getting max brute");
-//   let oneIndexedArrayCount = new Array(n + 1).fill(0, 0, n + 1);
-//   let max = null;
-
-//   for (let i = 1; i <= queries.length; i++) {
-//     let variableArray = queries[i - 1];
-//     let a = variableArray[0];
-//     let b = variableArray[1];
-//     let k = variableArray[2];
-//     if (k === 0) {
-//       continue;
-//     }
-//     for (let j = a; j <= b && j <= n; j++) {
-//       oneIndexedArrayCount[j] =
-//         oneIndexedArrayCount[j] === undefined ? k : oneIndexedArrayCount[j] + k;
-//       if (max === null) {
-//         max = oneIndexedArrayCount[j];
-//       }
-//       if (oneIndexedArrayCount[j] > max) {
-//         max = oneIndexedArrayCount[j];
-//       }
-//     }
-//   }
-//   return max;
-// }
 
 console.log(
   "Should be 200",
