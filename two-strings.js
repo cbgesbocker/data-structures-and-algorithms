@@ -11,5 +11,18 @@
 
 function twoStrings(s1, s2) {
   // Write your code here
-  // O(s1 + s2)
+  // O(s1) + O(s2) -> find smaller string, loop over s1, then inner loop over s2 and check for existance
+  let stringToUse = s1.length < s2.length ? s1 : s2;
+
+  let index = 0;
+  let found = false;
+  while (stringToUse[index] !== undefined) {
+    if (s2.includes(stringToUse[index])) {
+      found = true;
+      break;
+    }
+    index++;
+  }
+  return found ? "YES" : "NO";
+  // O (smallerString) -> loop over smaller string and
 }
