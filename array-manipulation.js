@@ -23,19 +23,19 @@ function arrayManipulationV4(n, queries) {
     ends.set(i, { index: b, value: k });
   }
 
-  let startsTotal = Array.from(starts).reduce((acc, value) => {
-    acc += value[1].index;
-    return acc;
-  }, 0);
+  let startsTotal =
+    Array.from(starts).reduce((acc, value) => {
+      acc += value[1].index;
+      return acc;
+    }, 0) / starts.size;
 
-  let endsTotal = Array.from(ends).reduce((acc, value) => {
-    acc += value[1].index;
-    return acc;
-  }, 0);
+  let endsTotal =
+    Array.from(ends).reduce((acc, value) => {
+      acc += value[1].index;
+      return acc;
+    }, 0) / ends.size;
 
-  let middle = Math.floor(
-    (startsTotal / starts.size + endsTotal / ends.size) / 2
-  );
+  let middle = Math.ceil((startsTotal + endsTotal) / 2);
   console.log("middle", middle);
   let middleCountMap = new Map();
   let othersCountMap = new Map();
@@ -55,9 +55,7 @@ function arrayManipulationV4(n, queries) {
   }
 
   let max = 0;
-  console.log(middleCountMap.size, othersCountMap.size);
   if (middleCountMap.size >= othersCountMap.size) {
-    console.log("using middle");
     for (let item of middleCountMap) {
       max += item[1].value;
     }
@@ -66,6 +64,8 @@ function arrayManipulationV4(n, queries) {
   }
   return max;
 }
+
+function arrayManipulationV5(n, queries) {}
 
 function getMaxBrute(n, queries) {
   console.log("getting max brute");
