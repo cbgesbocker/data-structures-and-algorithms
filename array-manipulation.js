@@ -69,67 +69,58 @@ function arrayManipulationV5(n, queries) {
   // 1 5 3
   // 4 8 7
   // 6 9 1
-  let values = new Array(n + 1).fill(0, 0, n + 1);
+  let values = new Array(n + 2).fill(0, 0, n + 2);
 
   for (let i = 1; i <= queries.length; i++) {
     let variableArray = queries[i - 1];
     let a = variableArray[0];
     let b = variableArray[1];
     let k = variableArray[2];
-    if (k === 0) {
-      continue;
-    }
-    values[a] = values[a] === 0 ? k : values[a] + k;
-    values[b + 1] -= values[b] ? k : values[b] + k;
+    values[a] = values[a] += k;
+    values[b + 1] -= k;
   }
 
   let max = 0;
+  let sum = 0;
+  console.log("values", values);
+
   for (let j = 0; j < values.length; j++) {
-    let value = values[j];
-    let index = j;
-    while (index < values.length) {
-      values[index] += value;
-      if (!max) {
-        max = values[index];
-      }
-      if (max < values[index]) {
-        max = values[index];
-      }
-      index++;
-    }
-  }
-}
-
-function getMaxBrute(n, queries) {
-  console.log("getting max brute");
-  let oneIndexedArrayCount = new Array(n + 1).fill(0, 0, n + 1);
-  let max = null;
-
-  for (let i = 1; i <= queries.length; i++) {
-    let variableArray = queries[i - 1];
-    let a = variableArray[0];
-    let b = variableArray[1];
-    let k = variableArray[2];
-    if (k === 0) {
-      continue;
-    }
-    for (let j = a; j <= b && j <= n; j++) {
-      oneIndexedArrayCount[j] =
-        oneIndexedArrayCount[j] === undefined ? k : oneIndexedArrayCount[j] + k;
-      if (max === null) {
-        max = oneIndexedArrayCount[j];
-      }
-      if (oneIndexedArrayCount[j] > max) {
-        max = oneIndexedArrayCount[j];
-      }
-    }
+    sum += values[j];
+    max = Math.max(sum, max);
   }
   return max;
 }
 
+// function getMaxBrute(n, queries) {
+//   console.log("getting max brute");
+//   let oneIndexedArrayCount = new Array(n + 1).fill(0, 0, n + 1);
+//   let max = null;
+
+//   for (let i = 1; i <= queries.length; i++) {
+//     let variableArray = queries[i - 1];
+//     let a = variableArray[0];
+//     let b = variableArray[1];
+//     let k = variableArray[2];
+//     if (k === 0) {
+//       continue;
+//     }
+//     for (let j = a; j <= b && j <= n; j++) {
+//       oneIndexedArrayCount[j] =
+//         oneIndexedArrayCount[j] === undefined ? k : oneIndexedArrayCount[j] + k;
+//       if (max === null) {
+//         max = oneIndexedArrayCount[j];
+//       }
+//       if (oneIndexedArrayCount[j] > max) {
+//         max = oneIndexedArrayCount[j];
+//       }
+//     }
+//   }
+//   return max;
+// }
+
 console.log(
   "Should be 200",
-  arrayManipulationV4(4, [
+  arrayManipulationV5(5, [
     [1, 2, 100],
     [2, 5, 100],
     [3, 4, 100],
@@ -138,7 +129,7 @@ console.log(
 
 console.log(
   "Should be 31",
-  arrayManipulationV4(10, [
+  arrayManipulationV5(10, [
     [2, 6, 8],
     [3, 5, 7],
     [1, 8, 1],
@@ -148,7 +139,7 @@ console.log(
 
 console.log(
   "Should be 8628",
-  arrayManipulationV4(40, [
+  arrayManipulationV5(40, [
     [29, 40, 787],
     [9, 26, 219],
     [21, 31, 214],
