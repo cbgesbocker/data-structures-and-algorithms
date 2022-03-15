@@ -22,7 +22,10 @@ function countSwaps(a) {
       }
     }
   }
-  return count;
+  console.log(`Array is sorted in ${count} swaps.`);
+  console.log(`First Element: ${a[0]}`);
+  console.log(`Last Element: ${a[a.length - 1]}`);
 }
 
-console.log("Should be 4", countSwaps([6, 4, 1]));
+console.log("Should be 3");
+countSwaps([6, 4, 1]);
