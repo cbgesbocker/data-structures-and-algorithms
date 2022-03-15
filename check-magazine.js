@@ -12,7 +12,7 @@ function checkMagazine(magazine, note) {
   // the note with words in the magazine
   let possible = false;
 
-  // O(n + m)
+  // O(n^2)
   for (let i = 0; i < note.length; i++) {
     const search = magazine.indexOf(note[i]);
     if (search === -1) {

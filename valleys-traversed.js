@@ -23,18 +23,16 @@ function countingValleys(steps, path) {
       case "U":
         if (level === 0) valleysTraversed++;
         level++;
-
         break;
       case "D":
         level--;
         break;
       default:
         throw new Error('path[i] not "U" or "D"');
-        break;
     }
     steps--;
   }
   return valleysTraversed;
 }
 
-module.exports = valleysTraversed;
+module.exports = countingValleys;
