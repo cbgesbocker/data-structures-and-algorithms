@@ -23,11 +23,10 @@ function compare(obj: string[], obj2: string[]) {
   let valueOne = +obj[1];
   let valueTwo = +obj2[1];
 
-  if (nameOne === nameTwo) {
-    if (valueOne === valueTwo) return 0;
-    return valueOne < valueTwo ? -1 : 1;
+  if (valueOne === valueTwo) {
+    return nameOne.localeCompare(nameTwo);
   }
-  return nameOne.localeCompare(nameTwo);
+  return valueOne > valueTwo ? -1 : 1;
 }
 
 function main() {
