@@ -1,60 +1,67 @@
-function getMedianValue(arr) {
-  let middle = (arr.length - 1) / 2;
-
-  if (arr[middle] !== undefined) {
-    return arr[middle];
-  }
-
-  let leftLook =
-    arr[middle] === undefined
-      ? arr[Math.floor((arr.length - 1) / 2)]
-      : arr[middle];
-
-  let rightLook =
-    arr[middle] === undefined
-      ? arr[Math.ceil((arr.length - 1) / 2)]
-      : arr[middle];
-
-  let found = null;
-  while (arr[leftLook] === undefined || arr[rightLook] === undefined) {
-    let l = arr[leftLook];
-    let r = arr[rightLook];
-
-    if (l !== undefined && r !== undefined) {
-      found = (l + r) / 2;
+/**
+ */
+function getMedian(index, map) {
+  // look for map[<key>] after counting the map[<values>] up to
+  // !map[<values>] >= index
+  let medianIndex = 0;
+  let result;
+  for (let i = 0; i <= 201; i++) {
+    let frequency = 0;
+    if (map[i]) {
+      frequency += map[i];
     }
-    leftLook--;
-    rightLook++;
+    medianIndex += frequency;
+    if (medianIndex >= index) {
+      result = i;
+      break;
+    }
   }
-  return found;
+  return result;
 }
 
-function activityNotifications(expenditure, d) {
-  // Write your code here
-  // 2x median
-  let counter = 0;
-  for (let i = 0; i <= expenditure.length; i++) {
+function activityNotificationsV2(expenditure, d) {
+  let map = {};
+  let notifications = 0;
+
+  for (let i in expenditure) {
     let expense = expenditure[i];
-    let daysTrailedBack = 0;
 
-    let trailingExpenses = [];
-
-    while (i >= d && daysTrailedBack < d) {
-      let value = expenditure[i - daysTrailedBack];
-      trailingExpenses[value] = value;
-      daysTrailedBack++;
+    if (i >= d) {
+      let median = getMedian(d / 2, map);
+      if (d % 2 === 0) {
+        let computedMedian = median + getMedian(d / 2 + 1, map);
+        if (expense >= computedMedian) {
+          notifications++;
+        }
+      } else {
+        if (expense >= median * 2) {
+          notifications++;
+        }
+      }
     }
-    if (
-      trailingExpenses.length > 0 &&
-      getMedianValue(trailingExpenses) * 2 > expense
-    ) {
-      counter++;
+
+    // add counter of number of expenses
+    if (map[expense] === undefined) {
+      map[expense] = 1;
+    } else {
+      map[expense] += 1;
+    }
+
+    // if index is greater than D, subtract the
+    // previous counter value from the map to remove it
+    if (i >= d) {
+      let previous = expenditure[i - d];
+      map[previous]--;
     }
   }
-  return counter;
+  return notifications;
 }
 
+// console.log("Should be 2");
+// console.log(activityNotificationsV2([2, 3, 4, 2, 3, 6, 8, 4, 5], 5));
+console.log("Should be 1");
+console.log(activityNotificationsV2([10, 20, 30, 40, 50], 3));
+console.log("Should be 770");
 console.log(
-  "Should be 2",
-  activityNotifications([2, 3, 4, 2, 3, 6, 8, 4, 5], 5)
+  activityNotificationsV2(require("./input/activity-notification.2"), 9999)
 );

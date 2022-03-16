@@ -25,7 +25,10 @@ function countSwaps(a) {
   console.log(`Array is sorted in ${count} swaps.`);
   console.log(`First Element: ${a[0]}`);
   console.log(`Last Element: ${a[a.length - 1]}`);
+  return a;
 }
 
 console.log("Should be 3");
-countSwaps([6, 4, 1]);
+console.log(countSwaps([6, 4, 1]));
+
+module.exports = countSwaps;
