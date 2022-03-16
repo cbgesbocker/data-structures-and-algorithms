@@ -1,34 +1,3 @@
-function swap(arr: any[], indexOne: number, indexTwo: number) {
-  let value = arr[indexOne];
-  let valueTwo = arr[indexTwo];
-  arr[indexTwo] = value;
-  arr[indexOne] = valueTwo;
-  return arr;
-}
-
-function compareValues({
-  valueOne,
-  valueTwo,
-}: {
-  valueOne: string;
-  valueTwo: string;
-}) {
-  if (valueOne === valueTwo) {
-    return 0;
-  }
-  return +valueOne > +valueTwo ? -1 : 1;
-}
-
-function compareNames({
-  nameOne,
-  nameTwo,
-}: {
-  nameOne: string;
-  nameTwo: string;
-}) {
-  return nameOne.localeCompare(nameTwo);
-}
-
 let inputLines = [
   "5",
   "amy 100",
@@ -37,19 +6,46 @@ let inputLines = [
   "aakansha 75",
   "aleksa 150",
 ];
+
+main();
+
+function swap(array: any[], indexOne: number, indexTwo: number) {
+  let value = array[indexOne];
+  let valueTwo = array[indexTwo];
+  array[indexTwo] = value;
+  array[indexOne] = valueTwo;
+  return array;
+}
+
+function compare(obj: string[], obj2: string[]) {
+  let nameOne = obj[0];
+  let nameTwo = obj2[0];
+  let valueOne = +obj[1];
+  let valueTwo = +obj2[1];
+
+  if (nameOne === nameTwo) {
+    if (valueOne === valueTwo) return 0;
+    return valueOne < valueTwo ? -1 : 1;
+  }
+  return nameOne.localeCompare(nameTwo);
+}
+
 function main() {
   // Enter your code here
   inputLines = inputLines.slice(1);
 
-  // O (n ^ 2)
-  let namesArray = [];
-  namesArray.forEach((v: string, i: number) =>
-    console.log(`${namesArray[i]} ${valuesArray[i]}`)
-  );
+  for (let i = 0; i < inputLines.length; i++) {
+    for (let j = i + 1; j < inputLines.length; j++) {
+      let value = inputLines[i].split(" ");
+      let comp = inputLines[j].split(" ");
+      let result = compare(value, comp);
+      if (result === 1) {
+        inputLines = swap(inputLines, i, j);
+      }
+    }
+  }
+  inputLines.forEach((i) => console.log(i));
 }
-
-main();
-
 // aleksa 150
 // amy 100
 // david 100
