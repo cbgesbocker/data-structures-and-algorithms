@@ -49,7 +49,6 @@ function getMinimumCost(k, c) {
       }
     }
   }
-  console.log(c);
   return getSum(c);
 }
 
