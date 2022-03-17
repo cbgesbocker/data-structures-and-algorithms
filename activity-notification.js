@@ -1,8 +1,10 @@
 /**
+ * @function getMedian
+ *
+ * look for map[<key>] after counting the map[<values>] up to
+ * !map[<values>] >= index
  */
 function getMedian(index, map) {
-  // look for map[<key>] after counting the map[<values>] up to
-  // !map[<values>] >= index
   let medianIndex = 0;
   let result;
   for (let i = 0; i <= 201; i++) {
@@ -28,6 +30,7 @@ function activityNotificationsV2(expenditure, d) {
 
     if (i >= d) {
       let median = getMedian(d / 2, map);
+      // get next value
       if (d % 2 === 0) {
         let computedMedian = median + getMedian(d / 2 + 1, map);
         if (expense >= computedMedian) {
