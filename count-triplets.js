@@ -1,70 +1,36 @@
-/**
- * You are given an array and you need to find number of tripets of
- * indices such that the elements at those indices are in geometric
- * progression for a given common ratio and .
- * @param {*} arr
- * @param {*} r
- */
-
-// function countTriplets(arr, r) {
-//   // O(n^2) loop over array -> inner loop -> if GP -> counter++
-//   let tripletCount = 0;
-
-//   for (let i = 0; i < arr.length; i++) {
-//     let initialValue = arr[i];
-//     let indexValue = arr[i];
-//     let isTriplet = [];
-//     for (let j = i + 1; j < arr.length; j++) {
-//       let compareIndexValue = arr[j];
-//       const isRatio = compareIndexValue / indexValue === r;
-//       if (!isRatio) {
-//         console.log("not ratio", compareIndexValue, indexValue);
-//         continue;
-//       } else {
-//         console.log("is ratio", compareIndexValue, indexValue);
-//         isTriplet.push(true);
-//         indexValue = compareIndexValue;
-//       }
-//     }
-//     console.log(isTriplet);
-//     if (isTriplet.length === 3) {
-//       tripletCount++;
-//     }
-//   }
-//   return tripletCount;
-// }
 function countTriplets(arr, r) {
-  // O(n^2) loop over array -> inner loop -> if GP -> counter++
-  let map = new Map();
-  let ratioCount = 0;
+  let count = 0;
+  let dict = {};
+  let dictPairs = {};
 
-  for (let i = 0; i < arr.length; i++) {
-    let j = i;
-    while (j < arr.length) {
-      let value = arr[i];
-      let nextValue = arr[j + 1];
-      ratioCount += isRatio(value, nextValue, r) ? 1 : 0;
-      j++;
+  for (let v of arr.reverse()) {
+    // if we have a key in the pairs dictionary
+    // that is within the ratio * value
+    // add the number of pairs at that index
+    if (dictPairs[v * r]) {
+      count += dictPairs[v * r];
     }
-    console.log(ratioCount);
-    if (ratioCount >= 3) {
-      const mapVal = map.get(i);
-      if (mapVal) {
-        map.set(i, mapVal + 1);
-      } else {
-        map.set(i, 1);
-      }
+    // if we have a key in the dict
+    // that is within ratio * value
+    // add to dict pairs
+    if (dict[v * r]) {
+      dictPairs[v] = dictPairs[v] || 0;
+      dictPairs[v] = dictPairs[v] + dict[v * r];
     }
+    // set value = previous values at number + 1
+    dict[v] = dict[v] || 0;
+    dict[v] = dict[v] + 1;
   }
-  console.log(map);
-  return Array.from(map).reduce((acc, val) => {
-    acc += val[1];
-    return acc;
-  }, 0);
+  return count;
 }
 
-function isRatio(value, nextVal, ratio) {
-  return nextVal / ratio === value;
-}
+console.log(countTriplets("1 3 9 9 27 81".split(" "), 3));
 
-console.log("Should be 2", countTriplets([1, 2, 2, 4], 2));
+// console.log(
+//   countTriplets(
+//     "1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1".split(
+//       " "
+//     ),
+//     1
+//   )
+// );

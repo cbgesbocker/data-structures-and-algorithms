@@ -6,6 +6,8 @@ function getSum(arr) {
 }
 
 // Complete the getMinimumCost function below.
+
+// O ( log(N) + 2N )
 function getMinimumCost(k, c) {
   if (k === c.length) {
     return getSum(c);
