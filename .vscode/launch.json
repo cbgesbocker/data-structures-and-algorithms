@@ -11,7 +11,7 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}/merge-sort.js",
+            "program": "${workspaceFolder}/min-time.js",
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
             ]
