@@ -11,7 +11,7 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}/min-time.js",
+            "program": "${workspaceFolder}/process-data.js",
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
             ]
