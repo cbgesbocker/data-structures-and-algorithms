@@ -7,7 +7,6 @@
  */
 
 function whatFlavors(cost, money) {
-  // Write your code here
   let purchases = [];
   for (let i = 0; i < cost.length; i++) {
     let leftVal = cost[i];
