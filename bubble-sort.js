@@ -11,6 +11,7 @@ function swap(array, indexOne, indexTwo) {
   array[indexOne] = valueTwo;
   return array;
 }
+
 function countSwaps(a) {
   // Write your code here
   let count = 0;

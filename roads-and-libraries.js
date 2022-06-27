@@ -33,6 +33,27 @@ function readLine() {
  *  4. 2D_INTEGER_ARRAY cities
  */
 
+function roadsAndLibrariesV2(n, c_lib, c_road, cities) {
+  if (c_lib <= c_road) {
+    return n * c_lib;
+  }
+
+  let map = {};
+  for (let i = 1; i < n + 1; i++) {
+    map[i] = map[i] || [];
+    let connection = cities[i - 1];
+    if (!connection) {
+      continue;
+    }
+    let cityOne = connection[0];
+    let cityTwo = connection[1];
+    map[cityOne] = map[cityOne] || [];
+    map[cityTwo] = map[cityTwo] || [];
+    map[cityOne].push(cityTwo);
+    map[cityTwo].push(cityOne);
+  }
+}
+
 function roadsAndLibraries(n, c_lib, c_road, cities) {
   if (c_lib <= c_road) {
     return n * c_lib;
@@ -76,7 +97,6 @@ function roadsAndLibraries(n, c_lib, c_road, cities) {
     connectedGroups.push(groupConnectedCities);
   }
   let total = 0;
-  console.log(connectedGroups);
   for (let group of connectedGroups) {
     let numRoads = group.length;
     total += c_lib + c_road * (numRoads - 1);

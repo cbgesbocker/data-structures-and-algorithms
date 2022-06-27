@@ -44,7 +44,6 @@ class Solution {
         boolean found = false;
         List<Node> queue = new ArrayList<Node>();
         queue.add(root);
-        
         while (queue.size() > 0) {
             Node node = queue.remove(queue.size() - 1);
             if (node.data == val) {
