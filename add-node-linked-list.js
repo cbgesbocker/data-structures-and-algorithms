@@ -37,6 +37,19 @@ class SortedLinkedList {
     this.headNode = head.next;
     return this.headNode;
   }
+
+  displayList() {
+    let current = this.headNode;
+    console.log(`
+Linked List Output:
+
+`);
+    while (current !== null) {
+      current.displayData();
+      current = current.next;
+    }
+    console.log("");
+  }
 }
 
 class Node {
