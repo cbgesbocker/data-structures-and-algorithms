@@ -60,7 +60,7 @@ class Node {
     this.next = null;
   }
   displayData() {
-    console.log(this.i + " ");
+    console.log(this.data + " ");
   }
 }
 
@@ -73,8 +73,4 @@ list.remove();
 list.remove();
 list.remove();
 list.remove();
-list.remove();
-list.remove();
-list.remove();
-list.remove();
-console.log(JSON.stringify(list.headNode));
+list.displayList();
