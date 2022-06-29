@@ -13,4 +13,4 @@ function fib(n, map = {}) {
   return map[n];
 }
 
-console.log(fib(6));
+console.log(fib(5));
