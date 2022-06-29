@@ -9,11 +9,8 @@ function climb(n, steps, ways) {
   let val = 0;
   for (let step of steps) {
     if (n - step === 0) {
-      console.log("base case");
       val++;
     } else if (n - step > 0) {
-      console.log("n - step", n - step, "ways", ways);
-
       if (!(step in ways)) {
         ways[n - step] = climb(n - step, steps, ways);
       }
