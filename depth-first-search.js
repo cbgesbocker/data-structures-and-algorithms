@@ -1,30 +1,26 @@
-const size = 42;
-
-const visited = [];
-const visitedGroup = [];
-
-const graph = [
-  [1, 2],
-  [2, 3],
-  [1, 3],
-  [3, 4],
-];
-
-let path = [];
-
-const depthFirstSearch = function depthFirstSearch(index, graph) {
-  if (visitedGroup[index]) return;
-  visitedGroup[index] = true;
-  path.push(index);
-
-  const neighbors = graph[index];
-  for (let i = 0; i < neighbors.length - 1; i++) {
-    const vertex = neighbors[i];
-    if (!visited[vertex]) {
-      depthFirstSearch(i, graph);
+function depthFirstSearch(source, destination, graph, visited = new Map()) {
+  if (visited.get(source)) {
+    return false;
+  }
+  visited.set(source, true);
+  if (source === destination) {
+    return true;
+  }
+  for (const node of source.adjacent || []) {
+    if (depthFirstSearch(node, destination, visited)) {
+      return true;
     }
   }
-};
+  console.log(visited);
+  return false;
+}
 
-depthFirstSearch(3, graph);
-console.log(path);
+const nodes = [
+  { adjacent: [{ id: 3, adjacent: [6] }], id: 1 },
+  { adjacent: [{ id: 4, adjacent: [6] }], id: 2 },
+  { adjacent: [{ id: 5, adjacent: [6] }], id: 3 },
+  { adjacent: [{ id: 6, adjacent: [6] }], id: 4 },
+  { adjacent: [{ id: 2, adjacent: [6] }], id: 5 },
+  { adjacent: [{ id: 1, adjacent: [6] }], id: 6 },
+];
+console.log(depthFirstSearch(nodes[0], 6, nodes));
