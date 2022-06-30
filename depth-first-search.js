@@ -17,13 +17,6 @@ function depthFirstSearch(source, destination, visited = new Map()) {
   return false;
 }
 
-class Node {
-  constructor(id, adjacent) {
-    this.adjacent = adjacent;
-    this.id = id;
-  }
-}
-
 const nodes = [
   { adjacent: [{ id: 6, adjacent: [1] }], id: 1 },
   { adjacent: [{ id: 6, adjacent: [2] }], id: 2 },
