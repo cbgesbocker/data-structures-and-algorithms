@@ -24,16 +24,12 @@ class Node {
   }
 }
 
-function NodeFactory(id, adjacent) {
-  return new Node(
-    id,
-    adjacent.map((val) => new Node(val, []))
-  );
-}
-
 const nodes = [
-  new Node(1, [NodeFactory(2, [3, 4, 5, 6])]),
-  new Node(6, [NodeFactory(5, [3, 4])]),
-  new Node(10, [NodeFactory(2, [3, 4, 5])]),
+  { adjacent: [{ id: 6, adjacent: [1] }], id: 1 },
+  { adjacent: [{ id: 6, adjacent: [2] }], id: 2 },
+  { adjacent: [{ id: 5, adjacent: [6] }], id: 3 },
+  { adjacent: [{ id: 5, adjacent: [6] }], id: 4 },
+  { adjacent: [{ id: 2, adjacent: [6] }], id: 5 },
+  { adjacent: [{ id: 1, adjacent: [6] }], id: 6 },
 ];
 console.log(depthFirstSearch(nodes[0], 6));
