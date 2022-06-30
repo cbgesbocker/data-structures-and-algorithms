@@ -19,7 +19,7 @@ function depthFirstSearch(source, destination, visited = new Map()) {
 
 const nodes = [
   { adjacent: [{ id: 6, adjacent: [1] }], id: 1 },
-  { adjacent: [{ id: 6, adjacent: [2] }], id: 2 },
+  { adjacent: [{ id: 2, adjacent: [3] }], id: 2 },
   { adjacent: [{ id: 5, adjacent: [6] }], id: 3 },
   { adjacent: [{ id: 5, adjacent: [6] }], id: 4 },
   { adjacent: [{ id: 2, adjacent: [6] }], id: 5 },
