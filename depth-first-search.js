@@ -1,10 +1,14 @@
+//
+//
 //  \    /
 //   \  / 
 //    \/
-// search left then right by looping through children
+// search left of graph then right by looping through children
 // and searching down their children first recursively
 // until we reach an edge.  Then bubble back down to root and continue 
 // with previous executions.
+//
+//
 function depthFirstSearch(source, destination, visited = new Map(), path = []) {
   if (visited.get(source.id)) {
     return { found: false };
