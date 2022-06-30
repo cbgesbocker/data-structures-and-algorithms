@@ -1,12 +1,12 @@
 //
 //
 //
-function depthFirstSearch(source, destination, graph, visited = new Map()) {
-  if (visited.get(source)) {
+function depthFirstSearch(source, destination, visited = new Map()) {
+  if (visited.get(source.id)) {
     return false;
   }
-  visited.set(source, true);
-  if (source === destination) {
+  visited.set(source.id, true);
+  if (source.id === destination.id) {
     return true;
   }
   for (const node of source.adjacent || []) {
@@ -14,16 +14,26 @@ function depthFirstSearch(source, destination, graph, visited = new Map()) {
       return true;
     }
   }
-  console.log(visited);
   return false;
 }
 
+class Node {
+  constructor(id, adjacent) {
+    this.adjacent = adjacent;
+    this.id = id;
+  }
+}
+
+function NodeFactory(id, adjacent) {
+  return new Node(
+    id,
+    adjacent.map((val) => new Node(val, []))
+  );
+}
+
 const nodes = [
-  { adjacent: [{ id: 3, adjacent: [6] }], id: 1 },
-  { adjacent: [{ id: 4, adjacent: [6] }], id: 2 },
-  { adjacent: [{ id: 5, adjacent: [6] }], id: 3 },
-  { adjacent: [{ id: 6, adjacent: [6] }], id: 4 },
-  { adjacent: [{ id: 2, adjacent: [6] }], id: 5 },
-  { adjacent: [{ id: 1, adjacent: [6] }], id: 6 },
+  new Node(1, [NodeFactory(2, [3, 4, 5, 6])]),
+  new Node(6, [NodeFactory(5, [3, 4])]),
+  new Node(10, [NodeFactory(2, [3, 4, 5])]),
 ];
-console.log(depthFirstSearch(nodes[0], 6, nodes));
+console.log(depthFirstSearch(nodes[0], 6));
